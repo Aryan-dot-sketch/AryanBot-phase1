@@ -5,9 +5,6 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 import requests
 import os
 
-with open("config.json") as f:
-    config = json.load(f)
-
 BOT_TOKEN = config["telegram_bot_token"]
 OPENROUTER_API_KEY = config["openrouter_api_key"]
 MODEL = config["model"]
