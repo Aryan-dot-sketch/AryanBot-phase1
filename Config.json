@@ -1,0 +1,7 @@
+{
+  "telegram_bot_token": "7857484737:AAGKZqr17ZsjdR8-jXKPgjzvhezDXVUP4PQ",
+  "openrouter_api_key": "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",
+  "model": "openai/gpt-3.5-turbo",
+  "memory_file": "memory.json",
+  "system_prompt_file": "prompts/system_prompt.txt"
+}
