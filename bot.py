@@ -5,19 +5,22 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 import requests
 import os
 
-BOT_TOKEN = config["telegram_bot_token"]
-OPENROUTER_API_KEY = config["openrouter_api_key"]
-MODEL = config["model"]
-MEMORY_FILE = config["memory_file"]
-SYSTEM_PROMPT_FILE = config["system_prompt_file"]
+# ✅ Load values from environment variables
+BOT_TOKEN = os.getenv("telegram_bot_token")
+OPENROUTER_API_KEY = os.getenv("openrouter_api_key")
+MODEL = os.getenv("model", "openai/gpt-3.5-turbo")
+MEMORY_FILE = os.getenv("memory_file", "memory.json")
+SYSTEM_PROMPT_FILE = os.getenv("system_prompt_file", "prompts/system_prompt.txt")
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
+)
 
 def load_memory():
     if not os.path.exists(MEMORY_FILE):
         return []
     with open(MEMORY_FILE, "r") as f:
-        return json.load(f)["chat_history"]
+        return json.load(f).get("chat_history", [])
 
 def save_memory(memory):
     with open(MEMORY_FILE, "w") as f:
