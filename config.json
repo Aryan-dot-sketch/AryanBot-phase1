@@ -1,3 +1,0 @@
-git rm config.json
-git commit -m "Remove config.json for environment variable setup"
-git push
